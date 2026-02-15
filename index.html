@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Max Messenger Store</title>
+    <style>
+        body { background: #0f1216; color: white; font-family: 'Segoe UI', sans-serif; text-align: center; }
+        .shop-title { margin-top: 50px; color: #5865f2; font-size: 32px; }
+        .container { display: flex; justify-content: center; gap: 25px; padding: 50px; }
+        .card { 
+            background: #1c2128; border: 2px solid #30363d; border-radius: 20px; 
+            padding: 30px; width: 280px; transition: 0.4s;
+        }
+        .card:hover { border-color: #5865f2; transform: scale(1.05); }
+        .price { font-size: 28px; color: #2ecc71; margin: 20px 0; }
+        .buy-btn { 
+            background: #5865f2; color: white; border: none; padding: 12px; 
+            width: 100%; border-radius: 8px; cursor: pointer; font-weight: bold; 
+        }
+    </style>
+</head>
+<body>
+    <h1 class="shop-title">💎 МАГАЗИН MAX MESSENGER</h1>
+    <p>Выберите пакет валюты для мгновенного получения кода</p>
+    
+    <div class="container">
+        <div class="card">
+            <h2>500 РУБ</h2>
+            <p>Код: ДискордРулит</p>
+            <div class="price">100₽</div>
+            <button class="buy-btn" onclick="location.href='pay.html?item=500'">КУПИТЬ</button>
+        </div>
+        <div class="card">
+            <h2>1000 РУБ</h2>
+            <p>Код: Майнтопчик777</p>
+            <div class="price">200₽</div>
+            <button class="buy-btn" onclick="location.href='pay.html?item=1000'">КУПИТЬ</button>
+        </div>
+        <div class="card">
+            <h2>5000 РУБ</h2>
+            <p>Код: рфхуета</p>
+            <div class="price">500₽</div>
+            <button class="buy-btn" onclick="location.href='pay.html?item=5000'">КУПИТЬ</button>
+        </div>
+    </div>
+</body>
+</html>
